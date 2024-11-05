@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.33.0/min/vs/loader.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- First row of tabs -->
+            <div class="code-tabs">
+                <button class="code-tab active" data-tab="html">HTML</button>
+                <button class="code-tab" data-tab="css">CSS</button>
+                <button class="code-tab" data-tab="js">JavaScript</button>
+            </div>
+
+            <!-- Second row for controls on mobile -->
+            <div class="mobile-controls">
+                <select class="theme-select">
+                    <option value="vs-dark">Dark Theme</option>
+                    <option value="vs-light">Light Theme</option>
+                </select>
+                <select class="font-size-select">
+                    <option value="12">12px</option>
+                    <option value="14">14px</option>
+                    <option value="16">16px</option>
+                    <option value="18">18px</option>
+                </select>
+                <button class="export-btn" onclick="showExportOptions()">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Export
+                </button>
+                <button class="preview-btn" onclick="openPreviewInNewTab()">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                    Preview
+                </button>
+            </div>
+
+            <div class="code-editors">
+                <!-- Add loading animation -->
+                <div class="code-loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Generating code...</div>
+                </div>
+                
+                <div class="editor html-editor active" id="htmlEditor"></div>
+                <div class="editor css-editor" id="cssEditor"></div>
+                <div class="editor js-editor" id="jsEditor"></div>
+                
+                <!-- Input container -->
+                <div class="chat-input-container">
+                    <textarea placeholder="Enter your prompt here..." class="prompt-textarea"></textarea>
+                    <button class="send-button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.01 21L23 12L2.01 3L2 10L17 12L2 14L2.01 21Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js" defer></script>
+
+    <!-- Add this modal HTML before the closing body tag -->
+    <div class="export-modal">
+        <div class="export-modal-content">
+            <h3>Export Code</h3>
+            <div class="export-options">
+                <button onclick="exportToCodePen()">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 2L2 8.5v7L12 22l10-6.5v-7L12 2zm0 4L8 8.5l4 2.5 4-2.5L12 6z"/>
+                    </svg>
+                    Open in CodePen
+                </button>
+                <button onclick="exportIndividualFiles()">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Individual Files
+                </button>
+                <button onclick="exportAsZip()">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+                    </svg>
+                    ZIP File
+                </button>
+            </div>
+            <button class="close-modal" onclick="closeExportModal()">×</button>
+        </div>
+    </div>
+</body>
+</html> 

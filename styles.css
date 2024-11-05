@@ -1,0 +1,1200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Main content area */
+.main-content {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+/* Code tabs */
+.code-tabs {
+    padding: 0;
+    background: rgba(26, 26, 26, 0.95);
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.code-tab {
+    flex: 1;
+    padding: 12px;
+    color: #888;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.code-tab.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Editor area */
+.code-editors {
+    position: relative;
+    height: calc(100vh - 48px);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+    display: none;
+    background: rgba(30, 30, 30, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.editor.active {
+    display: block;
+}
+
+/* Input box */
+.chat-input-container {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 600px;
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(26, 26, 26, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.prompt-textarea {
+    flex: 1;
+    min-height: 40px;
+    max-height: 120px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+}
+
+.prompt-textarea:focus {
+    outline: none;
+}
+
+.send-button {
+    padding: 8px;
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.send-button:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .code-tabs {
+        height: 44px;
+        padding: 0 6px;
+        gap: 6px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(10px);
+    }
+
+    .code-tab {
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 8px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .code-tab.active {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
+
+    .code-editors {
+        padding-top: 44px;
+        height: calc(100vh - 44px);
+    }
+
+    .editor {
+        top: 44px;
+        bottom: 80px;
+        left: 8px;
+        right: 8px;
+        padding: 8px;
+    }
+
+    .chat-input-container {
+        bottom: 12px;
+        width: calc(100% - 24px);
+        padding: 10px;
+        min-height: 56px;
+    }
+
+    .prompt-textarea {
+        min-height: 36px;
+        font-size: 14px;
+    }
+
+    .credits {
+        top: auto;
+        bottom: 100px;
+        left: 16px;
+        padding: 8px 12px;
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+    }
+
+    .credits-content {
+        font-size: 13px;
+    }
+
+    .monaco-editor {
+        padding: 8px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .code-tabs {
+        height: 40px;
+    }
+
+    .code-tab {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+
+    .editor {
+        bottom: 60px;
+        padding: 8px;
+    }
+
+    .chat-input-container {
+        bottom: 8px;
+        padding: 10px;
+    }
+
+    .prompt-textarea {
+        font-size: 14px;
+        min-height: 36px;
+    }
+
+    .credits {
+        bottom: 90px;
+        padding: 6px 10px;
+    }
+
+    .credits-content {
+        font-size: 12px;
+    }
+
+    .monaco-editor {
+        font-size: 13px !important;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .code-tab {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .chat-input-container {
+        bottom: 6px;
+        padding: 6px;
+    }
+
+    .prompt-textarea {
+        font-size: 13px;
+    }
+
+    .credits {
+        bottom: 80px;
+        font-size: 11px;
+    }
+
+    .monaco-editor {
+        font-size: 12px !important;
+    }
+}
+
+/* Add smooth scrolling and better touch interaction */
+.monaco-editor .overflow-guard {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Better tap states */
+@media (hover: none) {
+    .code-tab:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    .send-button:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Settings and preview buttons */
+.settings-icon,
+.preview-button {
+    position: absolute;
+    top: 8px;
+    padding: 8px;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000;
+    color: #888;
+}
+
+.settings-icon {
+    right: 8px;
+}
+
+.preview-button {
+    right: 48px;
+}
+
+@media (max-width: 480px) {
+    .settings-icon,
+    .preview-button {
+        padding: 6px;
+    }
+
+    .settings-icon svg,
+    .preview-button svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Add these animation styles */
+
+/* Tab animations */
+.code-tab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.code-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #4a9eff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.code-tab:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+.code-tab.active::after {
+    left: 0;
+    width: 100%;
+}
+
+/* Editor transitions */
+.editor {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.editor.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Input box animations */
+.chat-input-container {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-input-container:focus-within {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.send-button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.send-button:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.send-button:active {
+    transform: scale(0.95);
+}
+
+/* Settings and preview button animations */
+.settings-icon,
+.preview-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-icon:hover,
+.preview-button:hover {
+    transform: translateY(-2px);
+    background: rgba(38, 38, 38, 0.95);
+    color: #fff;
+}
+
+.settings-icon:active,
+.preview-button:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* Add keyframe animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Mobile hover states */
+@media (hover: hover) {
+    .code-tab:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+    }
+}
+
+/* Add loading animation for transitions */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #4a9eff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Loading animation styles */
+.code-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 26, 26, 0.98);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #4a9eff;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: #fff;
+    font-size: 16px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile adjustments for loading */
+@media (max-width: 768px) {
+    .loading-text {
+        font-size: 14px;
+    }
+    
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Update editor controls positioning */
+.editor-controls-bar {
+    position: fixed;
+    top: 48px; /* Height of code tabs */
+    right: 8px;
+    z-index: 1001;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fix input container to prevent moving code box */
+.chat-input-container {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 600px;
+    z-index: 1000;
+    background: rgba(26, 26, 26, 0.98);
+}
+
+/* Update editor area to account for fixed positions */
+.editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 70px; /* Fixed height for input container space */
+    padding: 10px;
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 8px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .editor-controls-bar {
+        top: 52px;
+        right: 16px;
+        padding: 6px;
+        gap: 6px;
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(8px);
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 4px 8px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+
+    .editor {
+        bottom: 80px;
+    }
+
+    .chat-input-container {
+        bottom: 12px;
+        width: calc(100% - 24px);
+        padding: 10px;
+        min-height: 56px;
+    }
+
+    .prompt-textarea {
+        min-height: 36px;
+        font-size: 14px;
+    }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .editor-controls-bar {
+        top: 48px;
+        right: 12px;
+        padding: 4px;
+        gap: 4px;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 3px 6px;
+        font-size: 11px;
+        min-width: 70px;
+    }
+
+    .editor {
+        top: 40px;
+        bottom: 70px;
+        padding: 6px;
+    }
+
+    .chat-input-container {
+        bottom: 8px;
+        padding: 8px;
+        min-height: 52px;
+    }
+
+    .prompt-textarea {
+        min-height: 32px;
+        font-size: 13px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .editor-controls-bar {
+        top: 46px;
+        right: 8px;
+        padding: 3px;
+        gap: 3px;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 2px 4px;
+        font-size: 10px;
+        min-width: 60px;
+    }
+
+    .chat-input-container {
+        bottom: 6px;
+        padding: 6px;
+        min-height: 48px;
+    }
+
+    .prompt-textarea {
+        min-height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* Add these styles for editor controls */
+.editor-controls {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    padding-right: 8px;
+}
+
+.theme-select,
+.font-size-select {
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-select:hover,
+.font-size-select:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Mobile adjustments for editor controls */
+@media (max-width: 768px) {
+    .code-tabs {
+        justify-content: space-between;
+        padding: 0 8px;
+    }
+
+    .code-tab {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .editor-controls {
+        gap: 4px;
+        padding-right: 0;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 4px;
+        font-size: 11px;
+        min-width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .code-tabs {
+        padding: 0 4px;
+    }
+
+    .code-tab {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .editor-controls {
+        gap: 2px;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 3px;
+        font-size: 10px;
+        min-width: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .theme-select,
+    .font-size-select {
+        padding: 2px;
+        font-size: 9px;
+        min-width: 35px;
+    }
+}
+
+/* Add mobile controls styles */
+.mobile-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: rgba(26, 26, 26, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 44px;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        padding: 8px;
+        background: rgba(26, 26, 26, 0.98);
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 6px 8px;
+        font-size: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        color: #fff;
+        min-width: 70px;
+    }
+
+    .codepen-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        color: #fff;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .codepen-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .code-editors {
+        padding-top: 88px; /* 44px for tabs + 44px for controls */
+    }
+
+    .editor {
+        top: 88px;
+    }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .mobile-controls {
+        padding: 6px;
+        top: 40px;
+    }
+
+    .theme-select,
+    .font-size-select,
+    .codepen-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+        min-width: 60px;
+    }
+
+    .code-editors {
+        padding-top: 80px; /* 40px for tabs + 40px for controls */
+    }
+
+    .editor {
+        top: 80px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .mobile-controls {
+        padding: 4px;
+    }
+
+    .theme-select,
+    .font-size-select,
+    .codepen-btn {
+        padding: 3px 6px;
+        font-size: 10px;
+        min-width: 50px;
+    }
+}
+
+/* Add CodePen button styles */
+.codepen-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.codepen-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.codepen-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.codepen-btn svg {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.codepen-btn:hover svg {
+    opacity: 1;
+}
+
+/* Ensure button is visible and properly sized on mobile */
+@media (max-width: 768px) {
+    .codepen-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-height: 32px;
+    }
+    
+    .codepen-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .codepen-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-height: 28px;
+    }
+    
+    .codepen-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Add styles for speech button */
+.speech-button {
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    min-height: 24px;
+    margin: 0 4px;
+    z-index: 1001; /* Ensure button is above other elements */
+}
+
+.speech-button svg {
+    width: 24px;
+    height: 24px;
+    pointer-events: none; /* Prevent SVG from blocking clicks */
+}
+
+.speech-button:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.speech-button.listening {
+    color: #4a9eff;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.speech-button:active {
+    transform: scale(0.95);
+}
+
+/* Update chat input container to ensure proper layout */
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(26, 26, 26, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* Ensure buttons are visible */
+.chat-input-container button {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Remove all export and CodePen related styles */
+.export-btn,
+.export-dropdown,
+.export-group,
+.export-option {
+    display: none !important;
+}
+
+/* Clean up mobile controls */
+.mobile-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    padding: 8px;
+    background: rgba(26, 26, 26, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Update theme and font size controls */
+.theme-select,
+.font-size-select {
+    padding: 6px 8px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    min-width: 70px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-select:hover,
+.font-size-select:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .mobile-controls {
+        padding: 6px;
+        top: 40px;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 4px 8px;
+        font-size: 11px;
+        min-width: 60px;
+    }
+
+    .code-editors {
+        padding-top: 88px; /* 44px for tabs + 44px for controls */
+    }
+
+    .editor {
+        top: 88px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-controls {
+        padding: 4px;
+    }
+
+    .theme-select,
+    .font-size-select {
+        padding: 3px 6px;
+        font-size: 10px;
+        min-width: 50px;
+    }
+}
+
+/* Add preview button styles - similar to codepen-btn */
+.preview-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.preview-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.preview-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.preview-btn svg {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.preview-btn:hover svg {
+    opacity: 1;
+}
+
+/* Mobile adjustments for preview button */
+@media (max-width: 768px) {
+    .preview-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-height: 32px;
+    }
+    
+    .preview-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .preview-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-height: 28px;
+    }
+    
+    .preview-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Add these styles at the end of the file */
+
+/* Export button styles */
+.export-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.export-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Export modal styles */
+.export-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.export-modal.active {
+    display: flex;
+}
+
+.export-modal-content {
+    background: #1e1e1e;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+    position: relative;
+    padding: 24px;
+}
+
+.export-modal h3 {
+    margin: 0 0 20px 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.export-options button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.export-options button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.close-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
